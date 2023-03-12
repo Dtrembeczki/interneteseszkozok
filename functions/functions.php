@@ -14,6 +14,11 @@
             ";
         }else{
             $title = $page;
+            $logout = "
+            <li class='nav-item'>
+                <a class='nav-link' href='includes/signout.inc.php'>Kijelentkezés</a>
+            </li>
+            ";
             $navs = "
             <li class='nav-item'>
                 <a class='nav-link active' href='../index.php'>Főoldal

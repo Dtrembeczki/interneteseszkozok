@@ -8,6 +8,10 @@
 
         private $conn;
 
+        public function __construct($db){
+            $this->dbname = $db;
+        }
+
         public function connection(){
             $this->conn = new mysqli($this->host, $this->dbuser, $this->pwd, $this->dbname);
 

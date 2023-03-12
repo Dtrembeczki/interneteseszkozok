@@ -4,7 +4,7 @@
     include 'src/user/User.php';
 
     include 'functions/functions.php';
-    $db = new Database();
+    $db = new Database("iek");
     $conn = $db->connection();
 
     /*

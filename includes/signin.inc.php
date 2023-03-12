@@ -4,7 +4,7 @@
     include '../src/user/User.php';
     include '../config/Database.php';
     
-    $db = new Database();
+    $db = new Database("iek");
     $conn = $db->connection();
 
     if (isset($_POST['signinSubmit'])){
