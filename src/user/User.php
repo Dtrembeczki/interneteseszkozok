@@ -7,6 +7,9 @@
     class User{
         private $id;
         private $name;
+        private $firstname;
+        private $lastname;
+        private $dateofbirth;
         private $pwd;
         private $hashed_pwd;
         private $email;
@@ -19,11 +22,14 @@
          * @param string $email
          * @param string $sex
          */
-        public function __construct(string $name, string $pwd, string $email, string $sex){
+        public function __construct(string $name, string $firstname, string $lastname, string $pwd, string $email, string $sex, $dateofbirth){
             $this->name = $name;
+            $this->firstname = $firstname;
+            $this->lastname = $lastname;
             $this->pwd = $pwd;
             $this->email = $email;
             $this->sex = $sex;
+            $this->dateofbirth = $dateofbirth;
         }
 
         
@@ -52,22 +58,33 @@
 
             return $result;
         }
-
         
+
         /**
          * Summary of insertUsr
          * @param mysqli $conn
          * @return void
          * 
          * Insert user to the users table
-         * INSERT INTO users(name,pwd,email,sex) VALUES()
+         * INSERT INTO users(name, firstname, lastname, pwd, email, dateofbirth, sex, regtime) VALUES()
          */
         public function insertUsr(mysqli $conn){
             $this->hashed_pwd = password_hash($this->pwd, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO users(name,pwd,email,sex) VALUES(?,?,?,?)';
-            $stmt = mysqli_prepare($conn,$sql);
-            $stmt->bind_param('ssss', $this->name, $this->hashed_pwd, $this->email, $this->sex);
+            //turn dateofbirth from string to date 
+            $date = strtotime($this->dateofbirth);
+            $date = date("Y-m-d", $date);
+
+            //sql query
+            /*$sql = 'INSERT INTO users(name, firstname, lastname, pwd, email, dateofbirth, sex) 
+            VALUES('.$this->name.', '.$this->firstname.', '.$this->lastname.',
+             '.$this->hashed_pwd.', '.$this->email.', '.$date.', '.$this->sex.')';*/
+
+            $sql = 'INSERT INTO users(name, firstname, lastname, pwd, email, dateofbirth, sex) 
+            VALUES(?,?,?,?,?,?,?)';
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('sssssss', $this->name, $this->firstname, $this->lastname, $this->hashed_pwd, $this->email, $date, $this->sex);
 
             $stmt->execute();
         }
@@ -117,5 +134,29 @@
 
         public function __setEmail(string $email){
             $this->email = $email;
+        }
+
+        public function __getFirstName(){
+            return $this->firstname;
+        }
+
+        public function __setFirstName(string $firstname){
+            $this->firstname = $firstname;
+        }
+
+        public function __getLastName(){
+            return $this->lastname;
+        }
+
+        public function __setLastName(string $lastname){
+            $this->lastname = $lastname;
+        }
+
+        public function __getDateofBirth(){
+            return $this->dateofbirth;
+        }
+
+        public function __setDateOfBirth($dateofbirth){
+            $this->dateofbirth = $dateofbirth;
         }
     }
