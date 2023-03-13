@@ -1,6 +1,7 @@
 <?php
     session_start();
 
+    //includes
     include '../src/user/User.php';
     include '../config/Database.php';
     
@@ -20,8 +21,11 @@
             if(password_verify($pwd, $row['pwd'])){
                 header('Location: ../index.php?msg=success');
 
-                $user = new User($row['name'], $row['pwd'], $row['email'],$row['sex']);
+                //Declare new User user variable
+                $user = new User($row['name'],$row['firstname'], $row['lastname'], $row['pwd'], $row['email'],$row['sex'], $row['dateofbirth']);
+                //Set userId
                 $user->__setId($row['id']);
+                //Set session variables
                 $user->setSessionVariables();
                 exit();
             }else{
