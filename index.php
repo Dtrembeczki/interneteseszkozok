@@ -12,6 +12,8 @@
         echo('connect successfully');
     }*/
 
+    
+    //header HTML
     headerHTML('home');
 
     ?>
