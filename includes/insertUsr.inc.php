@@ -16,7 +16,12 @@
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $dateofbirth = $_POST['dateofbirth'];
         $sex = mysqli_real_escape_string($conn, $_POST['sex']);
+        
+        /*
+        *           Need validation part here...
+        */
 
+        //      Declare User user
         $usr = new User($name, $firstname,$lastname, $pwd, $email, $sex, $dateofbirth);
         if (!$usr->insertUsr($conn)){
             header('Location: ../pages/signup.php?msg=success');
