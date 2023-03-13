@@ -1,5 +1,10 @@
 <?php
 
+    /**
+     * Summary of headerHTML
+     * @param mixed $page
+     * @return void
+     */
     function headerHTML($page){
 
         session_start();
