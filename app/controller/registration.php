@@ -24,14 +24,14 @@
 
             $msg = ['msg' => 'Teszt mezők', 'class' => 'alert alert-danger'];
             //  JSON error msg
-            echo json_encode($msg);
+            print json_encode($msg);
             return; 
         }
 
         if($_POST['pwd'] != $_POST['pwdAgain']){
             $msg = ['msg' => 'Teszt jelszok', 'class' => 'alert alert-danger'];
            //  JSON error msg
-           echo json_encode($msg);
+           print json_encode($msg);
            return; 
 
         }
@@ -39,7 +39,7 @@
         if(empty($_POST['gdpr'])){
             $msg = ['msg' => 'Teszt gdpr', 'class' => 'alert alert-danger'];
             //error msg
-            echo json_encode($msg);
+            print json_encode($msg);
             return;
         }
 
@@ -68,8 +68,8 @@
            //  JSON error msg
             $msg = ['msg' => 'OK', 'class' => 'alert alert-success'];
             //error msg
-            echo json_encode($msg);
-            
+            print json_encode($msg);
+            return;
         }else{
             print $conn->error;
         }
