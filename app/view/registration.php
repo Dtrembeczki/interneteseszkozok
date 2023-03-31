@@ -121,6 +121,7 @@
             $('#msg').text(d.msg);
 
           }).fail(function(){
+            //Mindig ajax failed-et dob és nem tér vissza a /app/controller/registration.php-rol
             alert('AJAX failed!');
           })
 
