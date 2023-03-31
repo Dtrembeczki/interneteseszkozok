@@ -6,7 +6,7 @@
     <!-- BOOTSTRAP reg form -->
 <form class="col-xl-6" >
   
-<div id="uzenet"></div>
+<div id="msg"></div>
 
 <h1>Regisztráció</h1>
 
@@ -118,7 +118,7 @@
             data: $('form').serialize()
           }).done(function(d){
             
-            $('#uzenet').text(d.msg);
+            $('#msg').text(d.msg);
 
           }).fail(function(){
             alert('AJAX failed!');
