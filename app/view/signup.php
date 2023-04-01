@@ -4,42 +4,42 @@
 
 
     <!-- BOOTSTRAP reg form -->
-<form class="col-xl-6" >
+<form class="col-xl-6 col-sm-10" ><!--method="post" action="app/controller/testajax.php"-->
   
 <div id="msg"></div>
 
 <h1>Regisztráció</h1>
 
     <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Vezetéknév</label>
+        <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Vezetéknév</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputEmail3" name="lname">
         </div>
     </div>
 
     <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Keresztnév</label>
+        <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Keresztnév</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputEmail3" name="fname">
         </div>
     </div>
 
   <div class="row mb-3">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+    <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Email</label>
     <div class="col-sm-10">
       <input type="email" class="form-control" id="inputEmail3" name="email">
     </div>
   </div>
 
   <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Jelszó</label>
+    <label for="inputPassword3" class="col-xl-2 col-sm-10 col-form-label">Jelszó</label>
     <div class="col-sm-10">
       <input autocomplete="off" type="password" class="form-control" id="inputPassword3" name="pwd">
     </div>
   </div>
 
   <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Jelszó újra</label>
+    <label for="inputPassword3" class="col-xl-2 col-sm-10 col-form-label">Jelszó újra</label>
     <div class="col-sm-10">
       <input autocomplete="off" type="password" class="form-control" id="inputPassword3" name="pwdAgain">
     </div>
@@ -47,7 +47,7 @@
 
   
   <div class="row mb-3">
-    <label for="birthyear" class="col-sm-2 col-form-label">
+    <label for="birthyear" class="col-xl-2 col-sm-10 col-form-label">
         Születési év
     </label>
     <div class="col-sm-10">
@@ -60,7 +60,7 @@
   </div>
 
   <fieldset class="row mb-3">
-    <legend class="col-form-label col-sm-2 pt-0">Nem</legend>
+    <legend class="col-form-label col-xl-2 col-sm-10 pt-0">Nem</legend>
     <div class="col-sm-10">
       <div class="form-check">
         <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="f" checked>
@@ -88,8 +88,11 @@
   <div class="row mb-3">
     <div class="col-sm-10 offset-sm-2">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1" name="gdpr">
-        <label class="form-check-label" for="gridCheck1">
+        <input type="hidden" name="gdpr" value="no">
+
+        <input class="form-check-input" type="checkbox" id="aszf" name="gdpr" value="yes">
+
+        <label class="form-check-label" for="aszf">
           Elfogadom az ÁSZF-t!
         </label>
       </div>
@@ -112,13 +115,13 @@
           e.preventDefault();
 
           $.ajax({
-            url: '../app/controller/registration.php',
+            url: 'app/controller/signup.controller.php',
             method: 'POST',
             dataType: 'JSON',
             data: $('form').serialize()
           }).done(function(d){
             
-            $('#msg').text(d.msg);
+            $('#msg').text(d.msg).removeClass().addClass(d.class);
 
           }).fail(function(){
             //Mindig ajax failed-et dob és nem tér vissza a /app/controller/registration.php-rol

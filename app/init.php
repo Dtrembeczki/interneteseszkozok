@@ -14,5 +14,6 @@ require_once APP . '/config.php';
 $db = new Database;
 $conn = $db->dbconnect();
 
+require_once MODEL . '/User.php';
+
 require_once CORE . '/App.php';
-require_once PUBLICDIR . '/elements/header.php';

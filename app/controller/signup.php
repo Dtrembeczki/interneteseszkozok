@@ -66,10 +66,8 @@
         //insert user
         if(User::create($conn, $fname, $lname, $email, $pwd, $gender, $birthyear)){
            //  JSON error msg
-            $msg = ['msg' => 'OK', 'class' => 'alert alert-success'];
-            //error msg
-            print json_encode($msg);
-            return;
+           print json_encode(['msg' => 'OK']);
+           return;
         }else{
             print $conn->error;
         }

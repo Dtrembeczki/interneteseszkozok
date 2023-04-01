@@ -48,11 +48,11 @@
 
         /**
          * read user(s) by costum query
-         * "SELECT * FROM users WHERE" ... "HERE YOU CAN WRITE YOUR WHERE STATEMENT";
+         * "SELECT * FROM users " ... "HERE YOU CAN WRITE YOUR WHERE STATEMENT";
          * @return mysqli_result
          */
-        public static function readCostumWhere(mysqli $conn, $where){
-            $sql = "SELECT * FROM users WHERE " . $where;
+        public static function readCostumWhere(mysqli $conn, $where =""){
+            $sql = "SELECT * FROM users " . $where;
 
             $res = $conn->query($sql);
             return $res;
