@@ -4,7 +4,7 @@
 
 
     <!-- BOOTSTRAP reg form -->
-<form class="col-xl-6 col-sm-10" action="app/controller/testajax.php" method="post">
+<form class="col-xl-6 col-sm-10">
   
 <div id="msg"></div>
 
@@ -105,7 +105,7 @@
 
 </main>
 
-<!--AJAX-
+<!--AJAX-->
 <script>
 
       $(function(){
