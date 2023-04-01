@@ -4,7 +4,7 @@
 
 
     <!-- BOOTSTRAP reg form -->
-<form class="col-xl-6 col-sm-10" ><!--method="post" action="app/controller/testajax.php"-->
+<form class="col-xl-6 col-sm-10" action="app/controller/testajax.php" method="post">
   
 <div id="msg"></div>
 
@@ -105,7 +105,7 @@
 
 </main>
 
-<!--AJAX-->
+<!--AJAX-
 <script>
 
       $(function(){
@@ -115,7 +115,7 @@
           e.preventDefault();
 
           $.ajax({
-            url: 'app/controller/signup.controller.php',
+            url: 'app/controller/testajax.php',
             method: 'POST',
             dataType: 'JSON',
             data: $('form').serialize()

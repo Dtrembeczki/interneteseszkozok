@@ -39,10 +39,18 @@
         $where = "where email = '". $email ."'";
         $result = User::readCostumWhere($conn, $where);
         if($result->num_rows > 0){
-            print json_encode(["msg" => "van ilyen email","class" => "alert alert-danger"]);
+            print json_encode(["msg" => "Ezzel az e-mail címmel már lett regisztrálva fiók","class" => "alert alert-danger"]);
             return;
         }
 
+        $pwd = hash('sha256',$pwd);
+
+        //insert user
+        if(User::create($conn, $fname, $lname, $email, $pwd, $gender, $birthyear)){
+           //  JSON error msg
+           print json_encode(['msg' => 'Sikeres regisztráció','class' => 'alert alert-success']);
+           return;
+        }
 
         //debug true sor
         print json_encode(["msg" => "signup.controller.php oldalon vagyunk","class" => "alert alert-primary"]);

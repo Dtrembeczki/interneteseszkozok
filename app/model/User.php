@@ -12,10 +12,11 @@
         private $gender;
         private $birthyear;
         private $profile_img;
+        public $noise = "flja%!+%/j..3--A43J86453dj84841ajlJL";
         
         /**
          *              CRUD   METHODS
-         *      create($fname, $lname, $email, $pwd, $gender, $birthyear): createing user 
+         *      create($conn, $fname, $lname, $email, $pwd, $gender, $birthyear): createing user 
          */
 
         //create user
