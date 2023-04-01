@@ -23,10 +23,7 @@ $sql = "INSERT INTO users(f_name, l_name, email, pwd, gender, dateofbirth)
 
 if($conn->query($sql)){
     print json_encode(['msg' => 'insert ok']);
-    echo 'Query: ' . $sql . ', conn: <br>';
-    print_r($conn);
-    echo '<br>';
-    echo $conn->error;
+    
 }
 
 
