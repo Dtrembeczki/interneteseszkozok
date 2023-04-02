@@ -115,17 +115,17 @@
           e.preventDefault();
 
           $.ajax({
-            url: 'app/controller/testajax.php',
-            method: 'POST',
+            url: 'app/controller/signup.controller.php',
+            type: 'POST',
             dataType: 'JSON',
             data: $('form').serialize()
           }).done(function(d){
             
             $('#msg').text(d.msg).removeClass().addClass(d.class);
 
-          }).fail(function(){
+          }).fail(function(jqXhr, textStatus, errorMessage){
             //Mindig ajax failed-et dob és nem tér vissza a /app/controller/registration.php-rol
-            alert('AJAX failed!');
+            $('#msg').append("AJAX Failed: " + textStatus + " error: " + errorMessage + " jqXhr: " + jqXhr );
           })
 
         });

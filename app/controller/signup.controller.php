@@ -1,5 +1,5 @@
 <?php
-
+    header("Content-type: application/json");
     require_once '../init.php';
 
     if(isset($_POST)){
@@ -45,15 +45,15 @@
 
         $pwd = hash('sha256',$pwd);
 
+        $insertok = false;
+
         //insert user
         if(User::create($conn, $fname, $lname, $email, $pwd, $gender, $birthyear)){
-           //  JSON error msg
-           print json_encode(['msg' => 'Sikeres regisztráció','class' => 'alert alert-success']);
-           return;
+            //  JSON error msg
+            $insertok = true;
         }
 
         //debug true sor
-        print json_encode(["msg" => "signup.controller.php oldalon vagyunk","class" => "alert alert-primary"]);
+        print json_encode(["msg" => "Sikeres Regisztráció! Lépj be!","class" => "alert alert-success"]);
         return;
-
     }

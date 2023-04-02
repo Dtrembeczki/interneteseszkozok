@@ -16,14 +16,12 @@ foreach($_POST as $key => $value){
     $$key = htmlspecialchars($value);
 }
 
-$sql = "INSERT INTO users(f_name, l_name, email, pwd, gender, dateofbirth) 
- VALUES ('{$fname}', '{$lname}', '{$email}', '{$pwd}' , '{$gender}' , '{$birthyear}')";
 
 //valami kínja van
 
-if($conn->query($sql)){
-    print json_encode(['msg' => 'insert ok']);
-    
+if(User::create($conn, 'test', 'test', 'test' ,'test','test', '1234')){
+    print json_encode(['msg' => 'Sikeres regisztráció','class' => 'alert alert-success']);
+    return;
 }
 
 
