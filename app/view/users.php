@@ -5,37 +5,58 @@
             <option value="DESC">Csökkenő sorrend</option>
         </select>
     </div>
+
+
+
     <div id="users"></div>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Törlés</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Biztosan törlöd?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nem, visszalépés</button>
+        <button id="userDelete" type="button" class="btn btn-danger">Igen, törlés</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--AJAX-->
 <script>
 
     $(document).ready( function(){
+
         $.ajax({
-            url : 'app/controller/users.controller.php',
+            url: 'app/controller/users.controller.php',
             type: 'POST',
-            dataType: 'JSON',
-            success: function(res){
-                var len = res.length;
-                for(var i = 0; i<len;i++){
-                    var id = res[i].id;
-                    var fname = res[i].fname;
-                    var lname = res[i].lname;
-                    var email = res[i].email;
-
-                    var user_str = "<div class='card mx-2 m-5'>" + 
-                                        "<div class='card-header'>" + id + "</div>" +
-                                        "<h2>" + lname + " " + fname +"</h2>" +
-                                        "<p>" + email + "</p>" +
-                                    "</div>";
-
-                    $("#users").append(user_str);
-                }
-            }
-        
+            success:function(result){
+                $('#users').html(result);
+            } 
         });
     });
+
+
+</script>
+
+<script>
+
+var myModal = document.getElementById('deletModal')
+var myInput = document.getElementById('delete')
+
+console.log(userId);
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
 
 </script>

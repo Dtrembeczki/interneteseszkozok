@@ -1,3 +1,9 @@
+
+<?php
+    $page = "";
+    $page = $_GET['page'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +18,7 @@
 
     <!--JQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <title>Mvc Crud</title>
+    <title>Mvc Crud <?= $page?></title>
 </head>
 <body>
     
