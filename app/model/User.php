@@ -26,9 +26,7 @@
                     VALUES ('".$fname."','". $lname ."','". $email ."','". $pwd ."','". $gender ."','". $birthyear ."')";
 
 
-            if($conn->query($sql)){
-                echo 'Query ok';
-            }
+            $conn->query($sql);
         }
 
         //read all users
@@ -58,6 +56,7 @@
             $res = $conn->query($sql);
             return $res;
         }
+
 
         //update user
         public static function updateById(mysqli $conn, $id, $fname, $lname ,$email, $pwd , $gender, $birthyear){
