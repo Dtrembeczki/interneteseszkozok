@@ -1,7 +1,16 @@
 
 <?php
     $page = "";
-    $page = $_GET['page'];
+    
+    if(isset($_GET['page'])){
+        if($_GET['page'] == 'users'){
+            $page = 'Felhasználók';
+        }else if($_GET['page'] = 'signup'){
+            $page = 'Regisztráció';
+        }else{
+            $page = "";
+        }
+    }
 ?>
 
 <!DOCTYPE html>

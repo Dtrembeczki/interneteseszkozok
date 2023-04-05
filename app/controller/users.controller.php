@@ -38,8 +38,10 @@
                             <td>'. $fname .'</td>
                             <td>'. $email .'</td>
                             <td>
+                                
                                 <button class="btn btn-primary">Szerkeszt</button>
-                                <button id="deleteBtn" value="'.$id.'" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Töröl</button>
+                                <button onclick="openDeleteModal('.$id.')" id="deleteBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Töröl</button>
+
                             </td> 
                         </tr>';
 
