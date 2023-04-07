@@ -2,9 +2,9 @@
 
     require_once '../init.php';
 
-    $order = 'DESC';
 
-    $result = User::readCostumWhere($conn, "where 1 ORDER BY id ".$order);
+
+    $result = User::readCostumWhere($conn, "where 1 ORDER BY id DESC");
     $data_arr = array();
     
     $table =    '<table class="table">
@@ -39,7 +39,7 @@
                             <td>'. $email .'</td>
                             <td>
                                 
-                                <button class="btn btn-primary">Szerkeszt</button>
+                                <a href="?page=update&id='. $id .'" class="btn btn-primary">Szerkeszt</a>
                                 <button onclick="openDeleteModal('.$id.')" id="deleteBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Töröl</button>
 
                             </td> 

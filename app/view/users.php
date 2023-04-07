@@ -1,12 +1,7 @@
-<div class="col-xl-6 mx-auto">
-    <div class="mt-4">
-        <select id="order" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-            <option selected value="ASC">Növekvő sorrend</option>
-            <option value="DESC">Csökkenő sorrend</option>
-        </select>
-    </div>
 
-    <div id="msg"></div>
+<div class="col-xl-6 mx-auto">
+
+    <div class="mt-5" id="msg"></div>
 
     <div id="users"></div>
 
@@ -39,13 +34,13 @@
     $(document).ready(display());
 
     function display(){
-      $.ajax({
-            url: 'app/controller/users.controller.php',
-            type: 'POST',
-            success:function(result){
-                $('#users').html(result);
-            } 
-        });
+            $.ajax({
+              url: 'app/controller/users.controller.php',
+              type: 'POST',
+              success:function(result){
+                  $('#users').html(result);
+              } 
+          });
     }
 
     //delete users
