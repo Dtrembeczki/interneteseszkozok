@@ -10,15 +10,20 @@
         }
 
         protected function getUrl(){
-                if(isset($_GET['page']) && file_exists(VIEW . '/' . $_GET['page'] . '.php')){
+                if(isset($_GET['page'])){
+                    
+                    if(file_exists(VIEW . '/' . $_GET['page'] . '.php')){
+                        echo $_GET['page'];
                         $this->page = $_GET['page'];
+                    }else{
+                        $this->page = 'home';
+                    }
                 }else{
                     $this->page = 'home';
                 }
-           
 
-            include_once VIEW . '/' . $this->page . '.php';
-
+            require_once VIEW . '/' . $this->page . '.php';
+            
         }
 
     }
