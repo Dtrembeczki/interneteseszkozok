@@ -1,17 +1,4 @@
 
-<?php
-    $page = "";
-    
-    if(isset($_GET['page'])){
-        if($_GET['page'] == 'users'){
-            $page = 'Felhasználók';
-        }else if($_GET['page'] = 'signup'){
-            $page = 'Regisztráció';
-        }else{
-            $page = "";
-        }
-    }
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +14,7 @@
 
     <!--JQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <title>Mvc Crud <?= $page?></title>
+    <title>Mvc Crud</title>
 </head>
 <body>
     

@@ -5,7 +5,7 @@
     if(isset($_POST)){
 
         //check if email or pwd or pwdAgain is empty
-        if(empty($_POST['email']) || empty($_POST['pwd']) || empty($_POST['pwdAgain'])){
+        if(empty($_POST['email']) || empty($_POST['pwd']) || empty($_POST['pwdAgain']) || empty($_POST['lname']) || empty($_POST['fname'])){
             //JSON error msg
             print json_encode(["msg" => "Minden csillaggal jelölt mezőt kötelező kitölteni! Próbálja újra!","class" => "alert alert-danger"]);
             return;
@@ -43,7 +43,7 @@
             return;
         }
 
-        $pwd = hash('sha256',$pwd);
+        $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
         $insertok = false;
 

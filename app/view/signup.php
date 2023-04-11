@@ -1,45 +1,60 @@
 
-<main class="d-flex justify-content-center mt-4">
+<main class="col-xl-6 mx-auto p-4 mt-5">
 
 
 
     <!-- BOOTSTRAP reg form -->
-<form class="col-xl-6 col-sm-10">
+<form>
   
 <div id="msg"></div>
 
 <h1>Regisztráció</h1>
 
+  <div class="row mb-3">
+      <label for="birthyear" class="col-xl-2 col-sm-10 col-form-label">
+          Titulus
+      </label>
+      <div class="col-sm-10">
+          <select name="title" id="title" class="form-select">
+                  <option value="">--</option>
+                  <option value="dr.">dr.</option>
+                  <option value="prof.">prof.</option>
+                  <option value="id.">id.</option>
+                  <option value="ifj.">ifj.</option>
+          </select>
+      </div>
+    </div>
+
     <div class="row mb-3">
-        <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Vezetéknév</label>
+        <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Vezetéknév*</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputEmail3" name="lname">
         </div>
     </div>
 
     <div class="row mb-3">
-        <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Keresztnév</label>
+        <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Keresztnév*</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="inputEmail3" name="fname">
         </div>
     </div>
 
   <div class="row mb-3">
-    <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Email</label>
+    <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Email*</label>
     <div class="col-sm-10">
       <input type="email" class="form-control" id="inputEmail3" name="email">
     </div>
   </div>
 
   <div class="row mb-3">
-    <label for="inputPassword3" class="col-xl-2 col-sm-10 col-form-label">Jelszó</label>
+    <label for="inputPassword3" class="col-xl-2 col-sm-10 col-form-label">Jelszó*</label>
     <div class="col-sm-10">
       <input autocomplete="off" type="password" class="form-control" id="inputPassword3" name="pwd">
     </div>
   </div>
 
   <div class="row mb-3">
-    <label for="inputPassword3" class="col-xl-2 col-sm-10 col-form-label">Jelszó újra</label>
+    <label for="inputPassword3" class="col-xl-2 col-sm-10 col-form-label">Jelszó újra*</label>
     <div class="col-sm-10">
       <input autocomplete="off" type="password" class="form-control" id="inputPassword3" name="pwdAgain">
     </div>

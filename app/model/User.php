@@ -72,6 +72,32 @@
             $conn->query($sql);
         }
 
+        //update user on changed properties
+        public static function updateByIdChanged(mysqli $conn, $id, $fname="", $lname="" ,$email="", $pwd=""){
+
+            $sql = "UPDATE users SET ";
+
+            if(!empty($fname)){
+                $sql .= "f_name = $fname, ";
+            }
+            
+            if(!empty($lname)){
+                $sql .= "l_name = $lname, ";
+            }
+
+            if(!empty($email)){
+                $sql .= "email = $email, ";
+            }
+
+            if(!empty($pwd)){
+                $sql .= "pwd = $pwd ";
+            }
+
+            $sql .= "WHERE id = $id";
+
+            $conn->query($sql);
+        }
+
         //delete user
         public static function deleteById(mysqli $conn, $id){
 

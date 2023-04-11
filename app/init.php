@@ -6,6 +6,7 @@ define('MODEL', ROOT . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'mode
 define('VIEW', ROOT . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'view');
 define('CORE', ROOT . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'core');
 define('CONTROLLER', ROOT . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'controller');
+define('MEDIA', ROOT . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'media');
 //public folder
 define('PUBLICDIR', ROOT . DIRECTORY_SEPARATOR . 'public');
 

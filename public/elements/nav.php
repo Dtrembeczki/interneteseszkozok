@@ -9,6 +9,7 @@
        <!-- <a class="nav-link active" aria-current="page" href="?page=home">Home</a>-->
         <a class="nav-link" href="?page=users">Felhasználók</a>
         <a class="nav-link" href="?page=signup">Regisztráció</a>
+        <a class="nav-link" href="?page=signin">Bejelentkezés</a>
       </div>
     </div>
   </div>

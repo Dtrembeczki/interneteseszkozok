@@ -13,7 +13,7 @@
                 if(isset($_GET['page'])){
                     
                     if(file_exists(VIEW . '/' . $_GET['page'] . '.php')){
-                        echo $_GET['page'];
+                        //echo $_GET['page'];
                         $this->page = $_GET['page'];
                     }else{
                         $this->page = 'home';

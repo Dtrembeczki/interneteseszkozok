@@ -33,7 +33,7 @@
 
             $table .=   '<tr>
                             <th scope="row">'.$id.'</th>
-                            <td>default_img.png</td> 
+                            <td><img src="app/media/profilimg/default_img.jpg" alt="Default profil img" class="rounded border border-4" style="width: 60px;"></td> 
                             <td>'.$lname.'</td>
                             <td>'. $fname .'</td>
                             <td>'. $email .'</td>
