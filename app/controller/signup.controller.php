@@ -27,12 +27,14 @@
 
         //XSS SQL injection
         //inputok név szerint
+        $title = htmlspecialchars($conn->real_escape_string($_POST['title']));
         $lname = htmlspecialchars($conn->real_escape_string($_POST['lname']));
         $fname = htmlspecialchars($conn->real_escape_string($_POST['fname']));
         $email = htmlspecialchars($conn->real_escape_string($_POST['email']));
         $pwd = htmlspecialchars($conn->real_escape_string($_POST['pwd']));
         $birthyear = htmlspecialchars($conn->real_escape_string($_POST['birthyear']));
         $gender = htmlspecialchars($conn->real_escape_string($_POST['gender']));
+        $newsletter = htmlspecialchars($conn->real_escape_string($_POST['newsletter']));
 
 
         //checking the email in db
@@ -48,7 +50,7 @@
         $insertok = false;
 
         //insert user
-        if(User::create($conn, $fname, $lname, $email, $pwd, $gender, $birthyear)){
+        if(User::create($conn, $title, $fname, $lname, $email, $pwd, $gender, $birthyear, $newsletter)){
             //  JSON error msg
             $insertok = true;
         }

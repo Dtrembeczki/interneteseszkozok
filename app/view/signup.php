@@ -66,11 +66,7 @@
         Születési év
     </label>
     <div class="col-sm-10">
-        <select name="birthyear" id="birthyear" class="form-select">
-            <?php for($i = date('Y')-100; $i<=date('Y'); $i++):?>
-                <option value="<?= $i?>"><?= $i?></option>
-            <?php endfor;?>
-        </select>
+        <input type="date" name="birthyear" id="birthyear">
     </div>
   </div>
 
@@ -109,6 +105,19 @@
 
         <label class="form-check-label" for="aszf">
           Elfogadom az ÁSZF-t!
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-10 offset-sm-2">
+      <div class="form-check">
+        <input class="form-check-input" type="hidden" id="newsletter" name="newsletter" value="0">
+        <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter" value="1">
+
+        <label class="form-check-label" for="newsletter">
+          Feliratkozom a hírlevélre!
         </label>
       </div>
     </div>
