@@ -2,9 +2,15 @@
 
     require_once '../init.php';
 
+    
+    if(isset($_POST['order'])){
+        $sqlorder = $_POST['order'];
+        $result = User::readCostumWhere($conn, "where 1 ORDER BY id $sqlorder");
+    }else{
+        $result = User::readCostumWhere($conn, "where 1 ORDER BY id DESC");
+    }
 
-
-    $result = User::readCostumWhere($conn, "where 1 ORDER BY id DESC");
+    //$result = User::readCostumWhere($conn, "where 1 ORDER BY id DESC");
     $data_arr = array();
     
     $table =    '<table class="table">

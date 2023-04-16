@@ -1,6 +1,15 @@
 
 <div class="col-xl-6 mx-auto p-4 mt-5">
 
+    <div class="col-xl-12">
+      <label class="col-xl-2" for="order">Rendezés</label>
+      <select class="col-xl-6" name="order" id="order" onchange="ordering(this.value)">
+        <option value="ASC">Növekvő</option>
+        <option value="DESC" selected>Csökkenő</option>
+      </select>
+
+    </div>
+
     <div id="msg"></div>
 
     <div id="users"></div>
@@ -146,7 +155,19 @@ eoModal -->
     }
 
 
-    //update modal display
+    //display in order
+    function ordering(orderValue){
+
+      $.ajax({
+              url: 'app/controller/users.controller.php',
+              type: 'POST',
+              data:{ order : orderValue },
+              success:function(result){
+                $('#users').html(result);                 
+              } 
+          });
+
+    }
 
 
 </script>

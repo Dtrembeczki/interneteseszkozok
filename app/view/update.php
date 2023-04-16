@@ -36,12 +36,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
-            <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Jelszó változtatás</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="pwdchng" name="pwdChng">
-            </div>
-        </div>
+        
 
         <div class="row mb-3">
             <label for="birthyear" class="col-xl-2 col-sm-10 col-form-label">
@@ -73,6 +68,26 @@
         <a href="?page=users" class="btn btn-secondary">Mégse</a>
     </form>
 
+</div>
+
+<div class="card col-xl-6 mx-auto p-4 mt-5">
+    <form id="pwdChange">
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Új jelszó</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="pwdchng" name="pwdChng">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            
+            <label for="inputEmail3" class="col-xl-2 col-sm-10 col-form-label">Új jelszó ismétlése</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="pwdchng" name="pwdChng">
+                </div>
+            </div>
+
+    </form>
 </div>
 
 <!--AJAX-->

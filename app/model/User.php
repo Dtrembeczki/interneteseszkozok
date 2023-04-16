@@ -12,7 +12,7 @@
         private $gender;
         private $birthyear;
         private $profile_img;
-        public $noise = "flja%!+%/j..3--A43J86453dj84841ajlJL";
+        public $salt = "@Ladl43jl2ad54eK*L%WJklkdjcld@.-a&LSAJdl";
         
         /**
          *              CRUD   METHODS
@@ -20,10 +20,10 @@
          */
 
         //create user
-        public static function create(mysqli $conn, $fname, $lname, $email, $pwd, $gender, $birthyear){
+        public static function create(mysqli $conn, $title, $fname, $lname, $email, $pwd, $gender, $birthyear, $newsletter){
 
-            $sql = "INSERT INTO users(f_name, l_name, email, pwd, gender, dateofbirth) 
-                    VALUES ('".$fname."','". $lname ."','". $email ."','". $pwd ."','". $gender ."','". $birthyear ."')";
+            $sql = "INSERT INTO users(title, f_name, l_name, email, pwd, gender, dateofbirth, newsletter) 
+                    VALUES ('".$title."','".$fname."','". $lname ."','". $email ."','". $pwd ."','". $gender ."','". $birthyear ."', '".$newsletter."')";
 
 
             $conn->query($sql);
@@ -57,17 +57,21 @@
             return $res;
         }
 
+        //update user with array
+        public function updateByIdArray(mysqli $conn, int $id, array $data)
+        {
+            
+        }
 
         //update user
-        public static function updateById(mysqli $conn, $id, $fname, $lname ,$email, $pwd , $gender, $birthyear){
+        public static function updateById(mysqli $conn, $id, $title, $fname, $lname ,$email, $gender){
 
             $sql = "UPDATE users 
                         SET f_name =    '$fname',
                             l_name =    '$lname', 
                             email =     '$email', 
-                            pwd =       '$pwd', 
-                            gender =    '$gender' , 
-                            dateofbirth = '$birthyear' WHERE id = $id";
+                            gender =    '$gender'
+                            title = '$title' WHERE id = $id";
             
             $conn->query($sql);
         }
