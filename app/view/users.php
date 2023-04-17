@@ -3,7 +3,7 @@
 
     <div class="col-xl-12">
       <label class="col-xl-2" for="order">Rendezés</label>
-      <select class="col-xl-6" name="order" id="order" onchange="ordering(this.value)">
+      <select class="col-xl-6 form-select" name="order" id="order" onchange="ordering(this.value)">
         <option value="ASC">Növekvő</option>
         <option value="DESC" selected>Csökkenő</option>
       </select>
