@@ -58,43 +58,68 @@
         }
 
         //update user with array
-        public function updateByIdArray(mysqli $conn, int $id, array $data)
+        public static function updateByIdArray(mysqli $conn, int $id, array $data)
         {
-            
+            $sql = "UPDATE users SET ";
+            $multiplesql = "";
+
+            if($data['title'] != ""){
+                $multiplesql = $sql . " title = '".$data['title']."' WHERE id = $id;";
+            }
+
+            if($data['fname'] != ""){
+                    $multiplesql .= $sql . " f_name = '".$data['fname']."' WHERE id = $id;";
+            }
+
+            if($data['lname'] != ""){
+                $multiplesql .= $sql . " l_name = '".$data['lname']."' WHERE id = $id;";
+            }
+
+            if($data['email'] != ""){
+                $multiplesql .= $sql . " email = '".$data['email']."' WHERE id = $id;";
+            }
+
+            if($data['email'] != ""){
+                $multiplesql .= $sql . " gender = '".$data['gender']."' WHERE id = $id;";
+            }
+
+            //echo json_encode(["msg" => "multiplesql" . $multiplesql]);
+            $conn->multi_query($multiplesql);
         }
 
         //update user
-        public static function updateById(mysqli $conn, $id, $title, $fname, $lname ,$email, $gender){
+        public static function updateById(mysqli $conn, $id, $title="", $fname="", $lname="" ,$email="", $gender=""){
 
-            $sql = "UPDATE users 
-                        SET f_name =    '$fname',
-                            l_name =    '$lname', 
-                            email =     '$email', 
-                            gender =    '$gender'
-                            title = '$title' WHERE id = $id";
+            $sql = " UPDATE users SET ";
+
+            if($title != ""){
+                $multiplesql = $sql . " title = '$title' ;";
+            }
+
+            if($fname != ""){
+                $multiplesql .= $sql . " f_name = '$fname' ;";
+            }
+
+            if($lname != ""){
+                $multiplesql .= $sql . " l_name = '$lname' ;";
+            }
+
+            if($email != ""){
+                $multiplesql .= $sql . " email = '$email' ;";
+            }
+
+            echo json_encode(["msg" => "multiplesql" . $multiplesql]);
             
-            $conn->query($sql);
+            $conn->multi_query($multiplesql);
         }
 
         //update user on changed properties
-        public static function updateByIdChanged(mysqli $conn, $id, $fname="", $lname="" ,$email="", $pwd=""){
+        public static function updateByIdChanged(mysqli $conn, $id, $fname=""){
 
             $sql = "UPDATE users SET ";
 
-            if(!empty($fname)){
-                $sql .= "f_name = $fname, ";
-            }
-            
-            if(!empty($lname)){
-                $sql .= "l_name = $lname, ";
-            }
-
-            if(!empty($email)){
-                $sql .= "email = $email, ";
-            }
-
-            if(!empty($pwd)){
-                $sql .= "pwd = $pwd ";
+            if($fname != ""){
+                $sql .= " f_name = '$fname' ";
             }
 
             $sql .= "WHERE id = $id";
