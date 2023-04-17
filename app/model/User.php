@@ -12,7 +12,7 @@
         private $gender;
         private $birthyear;
         private $profile_img;
-        public $salt = "@Ladl43jl2ad54eK*L%WJklkdjcld@.-a&LSAJdl";
+        protected $salt = "@Ladl43jl2ad54eK*L%WJklkdjcld@.-a&LSAJdl";
         
         /**
          *              CRUD   METHODS
@@ -83,49 +83,30 @@
                 $multiplesql .= $sql . " gender = '".$data['gender']."' WHERE id = $id;";
             }
 
+            if($data['newsletter'] != ""){
+                $multiplesql .= $sql . " gender = '".$data['newsletter']."' WHERE id = $id;";
+            }
+
             //echo json_encode(["msg" => "multiplesql" . $multiplesql]);
             $conn->multi_query($multiplesql);
         }
 
-        //update user
-        public static function updateById(mysqli $conn, $id, $title="", $fname="", $lname="" ,$email="", $gender=""){
-
-            $sql = " UPDATE users SET ";
-
-            if($title != ""){
-                $multiplesql = $sql . " title = '$title' ;";
-            }
-
-            if($fname != ""){
-                $multiplesql .= $sql . " f_name = '$fname' ;";
-            }
-
-            if($lname != ""){
-                $multiplesql .= $sql . " l_name = '$lname' ;";
-            }
-
-            if($email != ""){
-                $multiplesql .= $sql . " email = '$email' ;";
-            }
-
-            echo json_encode(["msg" => "multiplesql" . $multiplesql]);
-            
-            $conn->multi_query($multiplesql);
-        }
-
-        //update user on changed properties
-        public static function updateByIdChanged(mysqli $conn, $id, $fname=""){
-
+        //change PWD
+        public static function updatePwdById(mysqli $conn, int $id, array $data)
+        {
             $sql = "UPDATE users SET ";
+            $salt = "@Ladl43jl2ad54eK*L%WJklkdjcld@.-a&LSAJdl";
 
-            if($fname != ""){
-                $sql .= " f_name = '$fname' ";
+            if($data['pwdChng'] != $data['pwdChngAgain']){
+                return false;
             }
 
-            $sql .= "WHERE id = $id";
+            $hashed = password_hash($data['pwdChng'], PASSWORD_DEFAULT);
+            $sql .= "pwd = '$hashed' WHERE id = $id";
 
             $conn->query($sql);
         }
+
 
         //delete user
         public static function deleteById(mysqli $conn, $id){

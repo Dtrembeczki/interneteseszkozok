@@ -17,12 +17,16 @@
                 'email' =>  $row['email'],
                 'birthyear' =>  $row['dateofbirth'],
                 'title' =>  $row['title'],
-                'gender' => $row['gender']
+                'gender' => $row['gender'],
+                'newsletter' => $row['newsletter'],
+                'msg' => 'msg',
+                'class' => 'alert alert-primary'
             ]);
         }
         
         
-        echo json_encode($userdata);
+       /* echo json_encode($userdata);
+        $userdata=array();*/
     }
 
     if(isset($_POST['lnameChng'])){
@@ -41,6 +45,7 @@
         $fname = htmlspecialchars($conn->real_escape_string($_POST['fnameChng']));
         $email = htmlspecialchars($conn->real_escape_string($_POST['emailChng']));
         $gender = htmlspecialchars($conn->real_escape_string($_POST['genderChng']));
+        $newsletter = htmlspecialchars($conn->real_escape_string($_POST['newsletterChng']));
 
         $userchngArr = array();
         $userchngArr = ([
@@ -48,9 +53,14 @@
             'lname' => $lname,
             'fname' => $fname,
             'email' => $email,
-            'gender' => $gender
+            'gender' => $gender,
+            'newsletter' => $newsletter
         ]);
 
         User::updateByIdArray($conn, $userid, $userchngArr);
-
+        $userdata['msg'] = "Változtatás mentve";
+        $userdata['class'] = 'alert alert-success';
     }
+
+    echo json_encode($userdata);
+    $userdata=array();
