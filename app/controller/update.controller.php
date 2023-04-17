@@ -52,8 +52,5 @@
         ]);
 
         User::updateByIdArray($conn, $userid, $userchngArr);
-        //print json_encode(["msg" => "Sikeres adatváltoztatás","class" => "alert alert-success"]);
-
-
 
     }
