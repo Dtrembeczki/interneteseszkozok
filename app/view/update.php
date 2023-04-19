@@ -108,13 +108,13 @@
 
 <!--pwd change input-->
 <div class="card col-xl-6 mx-auto p-4 mt-5">
-    <form id="pwdChangeForm">
+    <form id="pwdChangeForm" autocomplete="false">
         
         <h3>Jelszó megváltoztatása</h3>
         <div class="row mb-3">
             <label for="pwdchng" class="col-xl-2 col-sm-10 col-form-label">Új jelszó</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="pwdchng" name="pwdChng">
+                <input type="password" class="form-control" id="pwdchng" name="pwdChng" autocomplete="false">
             </div>
         </div>
 
@@ -122,7 +122,7 @@
             
             <label for="pwdchngAgain" class="col-xl-2 col-sm-10 col-form-label">Új jelszó ismétlése</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="pwdchngAgain" name="pwdChngAgain">
+                    <input type="password" class="form-control" id="pwdchngAgain" name="pwdChngAgain" autocomplete="false">
                 </div>
         </div>
 
