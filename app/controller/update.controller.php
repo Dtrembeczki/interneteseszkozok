@@ -3,11 +3,13 @@
     require_once '../init.php';
 
 
+    $userdata = array();
+
     if(isset($_POST['userid'])){
         $userid=htmlspecialchars($conn->real_escape_string($_POST['userid']));
 
         $result = User::readById($conn, $userid);
-        $userdata = array();
+        //$userdata = array();
 
         while($row = $result->fetch_assoc()){
             $userdata = ([
@@ -19,6 +21,7 @@
                 'title' =>  $row['title'],
                 'gender' => $row['gender'],
                 'newsletter' => $row['newsletter'],
+                'img' => $row['profil_img'],
                 'msg' => 'msg',
                 'class' => 'alert alert-primary'
             ]);
@@ -29,6 +32,7 @@
         $userdata=array();*/
     }
 
+    //if change posted
     if(isset($_POST['lnameChng'])){
 
         //check if emailChng or lnameChng or fnameChng empty and drop JSON msg
@@ -60,7 +64,42 @@
         User::updateByIdArray($conn, $userid, $userchngArr);
         $userdata['msg'] = "Változtatás mentve";
         $userdata['class'] = 'alert alert-success';
+
+        unset($userchngArr);
+    }
+
+    //if pwdChng submit pressed
+    if(isset($_POST['pwdChng']) || isset($_POST['pwdChngAgain'])){
+
+        //check if the two 
+        if(empty($_POST['pwdChng']) || empty($_POST['pwdChngAgain'])){
+            print json_encode(["msg" => "Jelszó mező üres","class" => "alert alert-danger"]);
+            return;
+        }
+
+        if($_POST['pwdChng'] != $_POST['pwdChngAgain']){
+            print json_encode(["msg" => "Jelszó mezők nem egyeznek","class" => "alert alert-danger"]);
+            return;
+        }
+
+        //xss and sql injection protection
+        $userid=htmlspecialchars($conn->real_escape_string($_POST['userid']));
+        $pwd = htmlspecialchars($conn->real_escape_string($_POST['pwdChng']));
+        
+        //update pass with User class static method 
+        User::updatePwdById($conn, $userid, $pwd);
+        $userdata['msg'] = "Jelszó ok";
+        $userdata['class'] = 'alert alert-success';
+
+
+    }
+
+    //if img update posted
+    if(isset($_POST['imgupload'])){
+        echo "ok";
     }
 
     echo json_encode($userdata);
+
+    //unset the array
     $userdata=array();

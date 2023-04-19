@@ -57,7 +57,9 @@
             return $res;
         }
 
-        //update user with array
+        /**
+         * updateing user data
+        */
         public static function updateByIdArray(mysqli $conn, int $id, array $data)
         {
             $sql = "UPDATE users SET ";
@@ -84,29 +86,43 @@
             }
 
             if($data['newsletter'] != ""){
-                $multiplesql .= $sql . " gender = '".$data['newsletter']."' WHERE id = $id;";
+                $multiplesql .= $sql . " newsletter = '".$data['newsletter']."' WHERE id = $id;";
             }
 
             //echo json_encode(["msg" => "multiplesql" . $multiplesql]);
             $conn->multi_query($multiplesql);
         }
 
-        //change PWD
-        public static function updatePwdById(mysqli $conn, int $id, array $data)
+        /**
+         * pwd change with salting and hashing.
+        */
+        public static function updatePwdById(mysqli $conn, int $id, string $pwd)
         {
             $sql = "UPDATE users SET ";
             $salt = "@Ladl43jl2ad54eK*L%WJklkdjcld@.-a&LSAJdl";
 
-            if($data['pwdChng'] != $data['pwdChngAgain']){
-                return false;
-            }
-
-            $hashed = password_hash($data['pwdChng'], PASSWORD_DEFAULT);
+            $hashed = password_hash($pwd, PASSWORD_DEFAULT);
             $sql .= "pwd = '$hashed' WHERE id = $id";
 
             $conn->query($sql);
         }
 
+        /**
+         * update the profile img
+         */
+        public static function updatePImgById(mysqli $conn, int $id, array $imgArr)
+        {
+            $sql = "UPDATE users SET ";
+
+            $imgname = $imgArr['name'];
+            $imgtmp = $imgArr['tmp_name'];
+            $path = 'app/media/profilimg/';
+            move_uploaded_file($imgtmp, $path . '' . $imgname);
+
+            $sql .= "profil_img = '".$imgname."'";
+
+            $conn->query($sql);
+        }
 
         //delete user
         public static function deleteById(mysqli $conn, $id){

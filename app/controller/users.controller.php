@@ -39,6 +39,7 @@
             $email = $row['email'];
             $gender = $row['gender'];
             $dateofbirth = $row['dateofbirth'];
+            $profil_img = $row['profil_img'];
 
             $table .=   '<tr>
                             <th scope="row">'.$id.'</th>
@@ -55,7 +56,7 @@
                         </tr>';
 
             $dp .= '<div class="card mb-5 p-2 col-xs-12">
-                        <img src="app/media/profilimg/default_img.jpg" alt="Default profil img" class="rounded border border-4" style="width: 60px;">
+                        <img src="app/media/profilimg/'.$profil_img.'" alt="Default profil img" class="rounded border border-4" style="width: 60px;">
                         <div class="card-header"><h3>'.$title.''.$lname.' '. $fname .'</h3></div>
                         <div class="p-2">'.$email.'</div>
                         <div>
