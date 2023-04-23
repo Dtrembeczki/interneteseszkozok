@@ -16,5 +16,6 @@ $db = new Database;
 $conn = $db->dbconnect();
 
 require_once MODEL . '/User.php';
+require_once MODEL . '/Cookie.php';
 
 require_once CORE . '/App.php';

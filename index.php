@@ -4,7 +4,7 @@
     require_once 'public/elements/nav.php';
     require_once 'app/init.php';
 
-
+    Cookie::create('test', 'testcookie', 2);
     $app = new App;
 ?>
 
