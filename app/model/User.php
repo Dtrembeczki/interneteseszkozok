@@ -69,6 +69,10 @@
                 $multiplesql = $sql . " title = '".$data['title']."' WHERE id = $id;";
             }
 
+            if ($data['title'] == "") {
+                $multiplesql = $sql . " title = '' WHERE id = $id;";
+            }
+
             if($data['fname'] != ""){
                     $multiplesql .= $sql . " f_name = '".$data['fname']."' WHERE id = $id;";
             }
