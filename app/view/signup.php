@@ -1,4 +1,6 @@
 
+
+
 <main class="col-xl-6 mx-auto p-4 mt-5">
 
 
@@ -104,7 +106,7 @@
         <input class="form-check-input" type="checkbox" id="aszf" name="gdpr" value="yes">
 
         <label class="form-check-label" for="aszf">
-          Elfogadom az ÁSZF-t!
+          Elfogadom az <a href="?page=aszf">ÁSZF-t</a>!
         </label>
       </div>
     </div>
@@ -123,7 +125,24 @@
     </div>
   </div>
 
-  <button class="btn btn-primary">Regisztráció</button>
+  <!--captcha-->
+  <div class="row mb-3 card p-4 bg-light text-dark">
+    <div class="col-sm-8 offset-sm-2">
+      <div class="form-check" id="captcha-holder">
+
+        <div class="d-none" id="loader">
+            Loading...
+        </div>
+
+        <input class="form-check-input fs-2" type="checkbox" id="captcha" name="captcha" value="<?= $_SESSION['key']?>">
+        <label class="form-check-label fs-2" for="captcha">
+          Nem vagyok robot!
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary col-sm-12" id="btn" disabled>Regisztráció</button>
 </form>
 
 
@@ -156,5 +175,33 @@
 
       });
 
+
+      $("#captcha").change(function(){
+
+        var seskey = $('#captcha').val();
+        var keyCookie ='<?= $_COOKIE['key']?>';
+
+        if(this.checked){
+          $.ajax({
+            url: 'app/controller/captcha.php',
+            type: 'POST',
+            dataType: 'json',
+            data: { key : seskey },
+            success: function(data, status){
+              if(data.key == keyCookie){
+                $('#captcha-holder').ready(function(){
+                  ('#loader').removeClass().addClass('text-success');
+                });
+                $('#captcha-holder').html("<p class='fs-5 text-success text-center'>Nem vagy robot, regisztrálhatsz!</p>");
+                $('#btn').removeAttr('disabled');
+              }
+            }
+            
+          })
+        }
+      });
+      
+</script>
+<script>
 
 </script>

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 define('ROOT', dirname(__DIR__) .DIRECTORY_SEPARATOR);
 define('APP', ROOT . DIRECTORY_SEPARATOR . 'app');
 define('MODEL', ROOT . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'model');
@@ -19,3 +21,5 @@ require_once MODEL . '/User.php';
 require_once MODEL . '/Cookie.php';
 
 require_once CORE . '/App.php';
+
+$_SESSION['key'] = Cookie::keyGen();
