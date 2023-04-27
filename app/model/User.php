@@ -114,16 +114,11 @@
         /**
          * update the profile img
          */
-        public static function updatePImgById(mysqli $conn, int $id, array $imgArr)
+        public static function updatePImgById(mysqli $conn, int $id, string $imgname)
         {
             $sql = "UPDATE users SET ";
 
-            $imgname = $imgArr['name'];
-            $imgtmp = $imgArr['tmp_name'];
-            $path = 'app/media/profilimg/';
-            move_uploaded_file($imgtmp, $path . '' . $imgname);
-
-            $sql .= "profil_img = '".$imgname."'";
+            $sql .= "profil_img = '".$imgname."' WHERE id = $id";
 
             $conn->query($sql);
         }

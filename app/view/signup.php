@@ -1,13 +1,16 @@
 
-
+<?php
+  $keyvalue = md5(rand());
+  
+  Cookie::create('captcha', $keyvalue, 1);
+  $_SESSION['captcha'] = $keyvalue;
+?>
 
 <main class="col-xl-6 mx-auto p-4 mt-5">
 
-
-
     <!-- BOOTSTRAP reg form -->
 <form>
-  
+
 <div id="msg"></div>
 
 <h1>Regisztráció</h1>
@@ -134,7 +137,7 @@
             Loading...
         </div>
 
-        <input class="form-check-input fs-2" type="checkbox" id="captcha" name="captcha" value="<?= $_SESSION['key']?>">
+        <input class="form-check-input fs-2" type="checkbox" id="captcha" name="captcha" value="<?= $_SESSION['captcha']?>">
         <label class="form-check-label fs-2" for="captcha">
           Nem vagyok robot!
         </label>
@@ -144,8 +147,6 @@
 
   <button class="btn btn-primary col-sm-12" id="btn" disabled>Regisztráció</button>
 </form>
-
-
 </main>
 
 <!--AJAX-->
@@ -176,10 +177,10 @@
       });
 
 
+      //posttal elküldi a serverside-nak aminél ha egyezik a cookie-ban eltárolt captcha akkor visszaküldi a kulcsot, amit leellenőriz
       $("#captcha").change(function(){
 
         var seskey = $('#captcha').val();
-        var keyCookie ='<?= $_COOKIE['key']?>';
 
         if(this.checked){
           $.ajax({
@@ -188,12 +189,11 @@
             dataType: 'json',
             data: { key : seskey },
             success: function(data, status){
-              if(data.key == keyCookie){
-                $('#captcha-holder').ready(function(){
-                  ('#loader').removeClass().addClass('text-success');
-                });
+              if(data.reskey == 1){
                 $('#captcha-holder').html("<p class='fs-5 text-success text-center'>Nem vagy robot, regisztrálhatsz!</p>");
                 $('#btn').removeAttr('disabled');
+              }else{
+                $('#captcha-holder').html("<p class='fs-5 text-danger text-center'>Robot Vagy</p>");
               }
             }
             

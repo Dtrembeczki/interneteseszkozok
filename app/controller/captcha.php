@@ -1,16 +1,12 @@
 <?php
 
-    $data = array();
+    require_once '../model/Cookie.php';
 
-    //check if captcha key posted from signup.php view
-    if(isset($_POST['key'])){
-        //check if posted key and cookie 'captcha' is equal
-        if($_POST['key'] == $_COOKIE['captcha']){
-            $seskey = $_COOKIE['key'];
-            $data = (['key' => $seskey]);
-        }else{
-            $data = (['key' => 'nokey']);
+    if (isset($_POST['key'])) {
+        if($_POST['key'] = $_COOKIE['captcha']){
+            $value = rand();
+            Cookie::create('reskey',$value, 1);
+
+            echo json_encode(['reskey' => 1]);
         }
-
-        echo json_encode($data);
     }

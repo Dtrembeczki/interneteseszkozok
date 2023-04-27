@@ -7,12 +7,12 @@
 <div class="card col-xl-6 mx-auto p-4 mt-5">
 
     <!--profile_img change-->
-    <form enctype="multipart/form-data" id="imgForm">
+    <form action="app/controller/imgupdate.controller.php" method="post" id="imguploadForm" enctype="multipart/form-data">
         <div class="mb-5">
             <input type="hidden" name="userid" id="userid" value="<?= $userid?>">
             <img id="profil_img" src="app/media/profilimg/default_img.jpg" alt="Default profil img" class="rounded border border-4" style="width: 120px;">
-            <input type="file" name="profileimg" id="profileimgFile" class="btn btn-secondary">
-            <!--<button id="imguploadbtn" name="imguploadbtn" class="btn btn-primary">Mentés</button>-->
+            <input type="file" name="imgUpload" id="imgUpload" class="btn btn-secondary">
+            <button id="imguploadbtn" name="imguploadbtn" class="btn btn-primary">Mentés</button>
         </div>
     </form>
 
@@ -210,31 +210,41 @@ $(document).ready(displayUpdate());
 
 
  //update user profile img ajax
-$(function(){
+    $(document).ready(function(){
 
-    $('#imgForm').on('submit', function(e){
+        $('#imguploadbtn').click(function(e){
+            e.preventDefault();
 
-    e.preventDefault();
+            let form_data = new FormData();
+            let img = $("#imgUpload")[0].files;
+            let uid = $("#userid").val();
+            //checks if img is selected
+            if(img.length > 0){
+                //delete prev alert msg
+                $('#msg').html('').removeClass();
 
-    $.ajax({
-        url: 'app/controller/update.controller.php',
-        type: 'POST',
-        dataType: 'JSON',
-        data: new FormData(this),
-        beforeSend: function(){
-            $("#imguploadbtn").attr("disabled", "disabled");
-        }
-    }).done(function(d){
-        
-        $('#msg').text(d.msg).removeClass().addClass(d.class);
+                form_data.append('imgupload', img[0]);
+                form_data.append('uid', uid)
 
-    }).fail(function(jqXhr, textStatus, errorMessage){
-        //Mostmár tud
-        $('#msg').append("AJAX Failed: " + textStatus + " error: " + errorMessage + " jqXhr: " + jqXhr );
-    })
+                //post ajax 
+                $.ajax({
+                    url: 'app/controller/imgupdate.controller.php',
+                    type: 'post',
+                    data: form_data,
+                    contentType: false,
+                    processData: false,
+                    success: function(res){
+                        displayUpdate();
+                    }
+                });
+
+            }else{
+                //if not selected
+                $("#msg").html("Nincs kép kiválasztva! Próbáld újra").removeClass().addClass('alert alert-danger');
+            }
+
+        });
 
     });
-
-});
 
 </script>

@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 
 define('ROOT', dirname(__DIR__) .DIRECTORY_SEPARATOR);
 define('APP', ROOT . DIRECTORY_SEPARATOR . 'app');
@@ -14,12 +13,12 @@ define('PUBLICDIR', ROOT . DIRECTORY_SEPARATOR . 'public');
 
 require_once APP . '/config.php';
 
+require_once MODEL . '/Cookie.php';
+
 $db = new Database;
 $conn = $db->dbconnect();
 
 require_once MODEL . '/User.php';
-require_once MODEL . '/Cookie.php';
+
 
 require_once CORE . '/App.php';
-
-$_SESSION['key'] = Cookie::keyGen();
