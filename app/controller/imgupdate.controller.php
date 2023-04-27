@@ -41,6 +41,7 @@
                     //move to folder
                     move_uploaded_file($img_tmp, $upload_path);
 
+                    //insert into database
                     if (User::updatePImgById($conn, $uid, $new_img_name)) {
                         $msg = "Sikeres profil kép feltöltés";
                         $msgArray = (['msg' => $msg, 'class' => 'alert alert-success']);

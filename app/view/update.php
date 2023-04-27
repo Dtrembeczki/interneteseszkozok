@@ -4,7 +4,11 @@
 
 <div id="msg"></div>
 
-<div class="card col-xl-6 mx-auto p-4 mt-5">
+<div class="my-loader-holder" id="loader">
+    <div class="my-loader"></div>
+</div>
+
+<div class="card col-xl-6 mx-auto p-4 mt-5 skeleton">
 
     <!--profile_img change-->
     <form action="app/controller/imgupdate.controller.php" method="post" id="imguploadForm" enctype="multipart/form-data">
@@ -140,6 +144,8 @@
 $(document).ready(displayUpdate());
 
     function displayUpdate(){
+            $("#loader").hide();
+
             $.ajax({
             url: 'app/controller/update.controller.php',
             type: 'POST',
@@ -226,6 +232,8 @@ $(document).ready(displayUpdate());
                 form_data.append('imgupload', img[0]);
                 form_data.append('uid', uid)
 
+                $("#loader").show();
+
                 //post ajax 
                 $.ajax({
                     url: 'app/controller/imgupdate.controller.php',
@@ -234,6 +242,10 @@ $(document).ready(displayUpdate());
                     contentType: false,
                     processData: false,
                     success: function(res){
+                        $("#loader").hide();
+
+                        $("#msg").html(res);
+
                         displayUpdate();
                     }
                 });

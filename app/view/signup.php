@@ -6,7 +6,12 @@
   $_SESSION['captcha'] = $keyvalue;
 ?>
 
-<main class="col-xl-6 mx-auto p-4 mt-5">
+<!--my loader-->
+<div class="my-loader-holder" id="loader">
+    <div class="my-loader"></div>
+</div>
+
+<main class="col-xl-6 mx-auto p-4 mt-5 skeleton">
 
     <!-- BOOTSTRAP reg form -->
 <form>
@@ -152,11 +157,17 @@
 <!--AJAX-->
 <script>
 
+      $(document).ready(function(){
+        $("#loader").hide();
+      });
+
       $(function(){
 
         $('form').on('submit', function(e){
 
           e.preventDefault();
+
+          $("#loader").show();
 
           $.ajax({
             url: 'app/controller/signup.controller.php',
@@ -165,6 +176,8 @@
             data: $('form').serialize()
           }).done(function(d){
             
+            $("#loader").hide();
+
             $('#msg').text(d.msg).removeClass().addClass(d.class);
 
           }).fail(function(jqXhr, textStatus, errorMessage){

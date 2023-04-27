@@ -1,0 +1,27 @@
+.my-loader-holder{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.217);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-loader{
+    width: 50px;
+    Height: 50px;
+    border: hsl(200, 30%, 50%) 8px solid;
+    animation: load 1s infinite;
+    position: absolute;
+}
+
+.skeleton{
+    width: 60vw;
+    height: 80vh;
+}
+
+@keyframes load{
+    to{ transform: rotate(90deg) } 
+   } 

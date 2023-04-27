@@ -1,5 +1,9 @@
+<!--my loader-->
+<div class="my-loader-holder" id="loader">
+    <div class="my-loader"></div>
+</div>
 
-<div class="col-xl-6 mx-auto p-4 mt-5">
+<div class="col-xl-6 mx-auto p-4 mt-5 skeleton">
 
     <div class="col-xl-12">
       <label class="col-xl-2" for="order">Rendezés</label>
@@ -131,11 +135,16 @@ eoModal -->
     $(document).ready(display());
 
     function display(){
+
+      $("#loader").show();
+
             $.ajax({
               url: 'app/controller/users.controller.php',
               type: 'POST',
               success:function(result){
-                  $('#users').html(result);
+                $("#loader").hide();
+
+                $('#users').html(result);
               } 
           });
     }
